@@ -83,16 +83,8 @@ void radix_counting_sort(vector<Numero> &contas, int quant_contas)
         dividir_blocos(contas[i].original, contas[i]);
     }
 
-    int maior_quant_blocos = 0;
-    for (int i = 0; i < quant_contas; i++)
-    {
-        if (contas[i].blocos.size() > maior_quant_blocos)
-        {
-            maior_quant_blocos = contas[i].blocos.size();
-        }
-    }
-
-    for (int pos = 0; pos < maior_quant_blocos; pos++)
+    // Blocos tem mesmo tamanho
+    for (int pos = 0; pos < contas[0].blocos.size(); pos++)
     {
         counting_sort_blocos(contas, pos, quant_contas);
     }
