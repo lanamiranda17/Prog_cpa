@@ -1,0 +1,27 @@
+# Build artifacts
+obj/
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+*.dylib
+
+# Common build folders
+build/
+cmake-build-*/
+
+# Runtime outputs (normalmente reprodutíveis)
+*.log
+
+# Editor/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+ 
