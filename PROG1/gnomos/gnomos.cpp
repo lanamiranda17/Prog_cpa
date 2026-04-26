@@ -5,8 +5,9 @@ using namespace std;
 int binSearch(const vector<pair<int, int>>& range, int score, int left, int right) {
     if (score < range[left].first)
         return range[left - 1].second;  // Pontuação abaixo da faixa mínima
+
     if (score >= range[right].first)
-        return range[right].second;  // Pontuação acima da faixa máxima
+        return range[right].second;  // Pontuação acima ou igual da faixa máxima
 
     int result = -1;
 
@@ -30,6 +31,7 @@ int binSearch(const vector<pair<int, int>>& range, int score, int left, int righ
 vector<int> calculateScore(const vector<pair<int, int>>& range, const vector<int>& arrScores) {
     vector<int> results;
 
+    // Para cada pontuação (m)
     for (int score : arrScores)
         results.push_back(binSearch(range, score, 0, range.size() - 1));
 
