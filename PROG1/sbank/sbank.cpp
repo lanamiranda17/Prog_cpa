@@ -4,6 +4,12 @@
 #include <vector>
 using namespace std;
 
+/*
+    Solução de ordenação usando Radix Sort modificado com Counting Sort para ordenar as contas bancárias
+    e exibir as ocorrências.
+*/
+
+//Cada número representa uma conta bancária
 struct Numero {
     string original;
     vector<int> blocos;  // blocos de no máximo 4 dígitos, da direita para a esquerda
@@ -24,9 +30,9 @@ void counting_sort_blocos(vector<Numero>& contas, int pos, int quant_contas) {
     vector<Numero> saida(quant_contas);
     vector<int> count(10000, 0);  // Base 10000 (cada bloco tem 4 dígitos), tudo começa com 0
 
-    for (int i = 0; i < quant_contas; i++) {
+    for (int i = 0; i < quant_contas; i++) { // conta quantas vezes cada valor aparece em cada passada (cada bloco)
         count[contas[i].blocos[pos]]++;
-    }  // conta quantas vezes cada valor aparece em cada passada (cada bloco)
+    }
 
     for (int i = 1; i < 10000; i++) {
         count[i] += count[i - 1];  // Contagem acumulada p/ ficar mais eficiente -> vira vetor de posicoes
@@ -69,6 +75,8 @@ void radix_counting_sort(vector<Numero>& contas, int quant_contas) {
     }
 }
 
+
+// Percorre o vetor ordenado e conta quantas vezes cada conta aparece, exibindo a conta seguida da quantidade de ocorrências
 void imprimir_saida(vector<Numero>& contas, int quant_contas) {
     int i = 0;
 
@@ -82,7 +90,7 @@ void imprimir_saida(vector<Numero>& contas, int quant_contas) {
 
         cout << contas[i].original + to_string(qtd) << endl;
 
-        i += qtd;
+        i += qtd; // Para pular as repetidas
     }
 }
 
@@ -91,7 +99,7 @@ int main() {
     vector<Numero> contas;
 
     cin >> quant_testes;
-    while (quant_testes > 0) {
+    for (int i=0; i<quant_testes; i++) {
         cin >> quant_contas;
 
         contas = vector<Numero>(quant_contas);
@@ -105,8 +113,7 @@ int main() {
 
         imprimir_saida(contas, quant_contas);
         cout << endl;
-
-        quant_testes--;
     }
+    
     return 0;
 }

@@ -1,12 +1,21 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
+/*
+    Solução de divisão e conquista para calcular o número mínimo de operações necessárias para o flip sort
+    ordenar o vetor (corresponde ao número de inversões).
+    Usa merge sort modificado para contar o número de inversões.
+
+*/
+
+// Faz o merge de duas metades ordenadas e conta inversões entre elas.
 int merge(int *A, int inicio, int meio, int fim) {
     int n1 = meio - inicio + 1;
     int n2 = fim - meio;
 
-    int *L = new int[n1];
-    int *R = new int[n2];
+    vector<int> L(n1);
+    vector<int> R(n2);
 
     for (int i = 0; i < n1; i++) {
         L[i] = A[inicio + i];
@@ -27,7 +36,7 @@ int merge(int *A, int inicio, int meio, int fim) {
             A[k] = R[j];
             j++;
 
-            inversoes += n1 - i;
+            inversoes += n1 - i; // contabiliza todos os elementos restantes de L, pois todos formam inversão com R[j-1] já que o vetor está ordenado
         }
         k++;
     }
@@ -43,9 +52,6 @@ int merge(int *A, int inicio, int meio, int fim) {
         j++;
         k++;
     }
-
-    delete[] L;
-    delete[] R;
 
     return inversoes;
 }
@@ -70,14 +76,15 @@ int main (){
 
     int n;
     cin >> n;
+
     while (n > 0) {
 
-        int* A = new int[n];
+        vector<int> A(n);
         for (int i=0; i<n; i++){
             cin >> A[i];
         }
 
-        cout << "Minimum exchange operations : " << mergeSort(A, 0, n-1) << endl;
+        cout << "Minimum exchange operations : " << mergeSort(A.data(), 0, n-1) << endl;
 
         cin >> n;
     }
