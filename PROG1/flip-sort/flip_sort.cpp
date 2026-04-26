@@ -32,8 +32,7 @@ int merge(vector<int>& A, int inicio, int meio, int fim) {
 
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
-            A[k] = L[i];
-            i++;
+            A[k++] = L[i++];
         } else {
             A[k] = R[j];
             j++;
@@ -45,15 +44,11 @@ int merge(vector<int>& A, int inicio, int meio, int fim) {
 
     // Copia os elementos restantes de L e R, se houver
     while (i < n1) {
-        A[k] = L[i];
-        i++;
-        k++;
+        A[k++] = L[i++];
     }
 
     while (j < n2) {
-        A[k] = R[j];
-        j++;
-        k++;
+        A[k++] = R[j++];
     }
 
     return inversoes;
@@ -86,7 +81,7 @@ int main() {
             cin >> A[i];
         }
 
-        cout << "Minimum exchange operations : " << mergeSort(A, 0, n - 1) << endl;
+        cout << "Minimum exchange operations : " << mergeSort(A, 0, n-1) << endl; 
 
         cin >> n;
     }
