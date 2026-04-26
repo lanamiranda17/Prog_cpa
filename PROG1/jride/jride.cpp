@@ -2,11 +2,6 @@
 #include <vector>
 using namespace std;
 
-/*
-    Solução iterativa para encontrar a subarray de soma máxima.
-    Complexidade: O(m * n) em tempo e O(1) em espaço, onde m é o número de viagens e n é o número de pontos de parada.
-*/
-
 int main() {
     int m;  // quantidade de viagens
     cin >> m;

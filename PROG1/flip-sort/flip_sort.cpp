@@ -10,7 +10,7 @@ using namespace std;
 */
 
 // Faz o merge de duas metades ordenadas e conta inversões entre elas.
-int merge(int *A, int inicio, int meio, int fim) {
+int merge(vector<int>& A, int inicio, int meio, int fim) {
     int n1 = meio - inicio + 1;
     int n2 = fim - meio;
 
@@ -25,7 +25,9 @@ int merge(int *A, int inicio, int meio, int fim) {
         R[j] = A[meio + 1 + j];
     }
 
-    int i = 0, j = 0, k = inicio;
+    int i = 0;
+    int j = 0;
+    int k = inicio;
     int inversoes = 0;
 
     while (i < n1 && j < n2) {
@@ -36,11 +38,12 @@ int merge(int *A, int inicio, int meio, int fim) {
             A[k] = R[j];
             j++;
 
-            inversoes += n1 - i; // contabiliza todos os elementos restantes de L, pois todos formam inversão com R[j-1] já que o vetor está ordenado
+            inversoes += n1 - i;  // contabiliza todos os elementos restantes de L, pois todos formam inversão com R[j-1] já que o vetor está ordenado
         }
         k++;
     }
 
+    // Copia os elementos restantes de L e R, se houver
     while (i < n1) {
         A[k] = L[i];
         i++;
@@ -56,7 +59,7 @@ int merge(int *A, int inicio, int meio, int fim) {
     return inversoes;
 }
 
-int mergeSort(int *A, int inicio, int fim) {
+int mergeSort(vector<int>& A, int inicio, int fim) {
     if (inicio >= fim) {
         return 0;
     }
@@ -72,21 +75,19 @@ int mergeSort(int *A, int inicio, int fim) {
     return inversoes;
 }
 
-int main (){
-
+int main() {
     int n;
     cin >> n;
 
     while (n > 0) {
-
         vector<int> A(n);
-        for (int i=0; i<n; i++){
+
+        for (int i = 0; i < n; i++) {
             cin >> A[i];
         }
 
-        cout << "Minimum exchange operations : " << mergeSort(A.data(), 0, n-1) << endl;
+        cout << "Minimum exchange operations : " << mergeSort(A, 0, n - 1) << endl;
 
         cin >> n;
     }
-
 }
