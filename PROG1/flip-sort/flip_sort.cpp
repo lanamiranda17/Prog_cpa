@@ -32,10 +32,9 @@ int merge(vector<int>& A, int inicio, int meio, int fim) {
 
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
-            A[k++] = L[i++];
+            A[k] = L[i++];
         } else {
-            A[k] = R[j];
-            j++;
+            A[k] = R[j++];
 
             inversoes += n1 - i;  // contabiliza todos os elementos restantes de L, pois todos formam inversão com R[j-1] já que o vetor está ordenado
         }
